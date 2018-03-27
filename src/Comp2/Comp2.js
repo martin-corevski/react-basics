@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 class Comp2 extends Component {
-  handleChange (e) {
-    this.props.changeProp(e.target.value)
-  }
-
   navigate = () => {
     console.log('Comp2 navigate() log history: ', this.props.history)
     /**
