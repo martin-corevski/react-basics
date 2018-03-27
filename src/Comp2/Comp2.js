@@ -6,7 +6,7 @@ class Comp2 extends Component {
     this.props.changeProp(e.target.value)
   }
 
-  navigate () {
+  navigate = () => {
     console.log('Comp2 navigate() log history: ', this.props.history)
     /**
      * Push, with this function the browser back button will work and we can go
@@ -37,7 +37,9 @@ class Comp2 extends Component {
           <li>Url query param2: {urlParam2}</li>
         </ul>
         {/* This button triggers the navigate function with this context */}
-        <button onClick={this.navigate.bind(this)}>home</button>
+        {/* <button onClick={this.navigate.bind(this)}>home</button> */}
+        {/* By using an arrow function we don't need to bind this context */}
+        <button onClick={this.navigate}>home</button>
       </div>
     )
   }

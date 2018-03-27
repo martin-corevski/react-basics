@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import './Comp.scss'
 import Comp1 from '../Comp1/Comp1.js'
+import Comp3 from '../Comp3/Comp3.js'
 
 export default class Comp extends Component {
   constructor () {
@@ -57,7 +58,14 @@ export default class Comp extends Component {
         {/* We have to bind this in order for the Comp1 component to work with
         this context and access the changeProp function. */}
         <Comp1 changeProp={this.changeProp.bind(this)} pname={propsName}
-          stateProp={this.state.stateProp} />
+          stateProp={this.state.stateProp}>
+          Comp is passing this text to Comp1 and its available as this.props.children
+        </Comp1>
+        {/* The keyword this is only available in classes, therefore in Comp2
+          children will be accessed by using props.children */}
+        <Comp3>
+          Comp is passing this text to Comp3 and its available as props.children
+        </Comp3>
         {/* With activeClassName we can keep the navigation updated. */}
         <NavLink to='/comp2' activeClassName='a-class' >go to Comp2 component</NavLink>
       </div>
