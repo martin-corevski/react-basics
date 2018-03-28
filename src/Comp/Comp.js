@@ -17,10 +17,10 @@ export default class Comp extends Component {
   /**
    * This function is just an example of how to increment state property.
    */
-  incCounter = () => {
+  incCounter = x => {
     // this is bound from inside the constructor
     this.setState({
-      counter: this.state.counter + 1
+      counter: this.state.counter + x
     })
   }
 
@@ -43,6 +43,11 @@ export default class Comp extends Component {
     return (
       <div>
         <h1>Hello, {this.state.stateProp}!</h1>
+        <p>Increase the counter: {this.state.counter}</p>
+        {/* Increase the counter by 5 on every click, in order to pass the
+          argument we have to use bind(this, argument, ...) this context is
+          always passed as first argument to the bind method */}
+        <button onClick={this.incCounter.bind(this, 5)}>+</button>
         <Comp1 changeProp={this.changeProp} pname={propsName}
           stateProp={this.state.stateProp}>
           Comp is passing this text to Comp1 and its available as this.props.children

@@ -228,10 +228,11 @@ module.exports = env => {
         },
         // SCSS, CSS loaders
         {
-          test: /\.scss$/,
-          include: /scss/,
+          test: /\.(css|scss|sass)$/,
           use: extractTextPlugin.extract({
-            use: ['css-loader', 'sass-loader'],
+            // postcss loader is used in order for autoprefixer to auto add
+            // browser specific prefixes
+            use: ['css-loader', 'postcss-loader', 'sass-loader'],
             fallback: 'style-loader'
           })
         },
