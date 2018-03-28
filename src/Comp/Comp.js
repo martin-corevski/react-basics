@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import './Comp.scss'
-import Comp1 from '../Comp1/Comp1.js'
-import Comp3 from '../Comp3/Comp3.js'
+import Comp1 from '../Comp1/Comp1'
+import Comp3 from '../Comp3/Comp3'
+import Comp4 from '../Comp4/Comp4'
 
 export default class Comp extends Component {
   state = {
     stateProp: 'state',
-    counter: 0
+    showCounter: true,
+    counter: 0,
+    components: [
+      {id: 'uid1', name: 'component 1'},
+      {id: 'uid2', name: 'component 2'},
+      {id: 'uid3', name: 'component 3'}
+    ]
   }
 
   changeProp = stateProp => {
@@ -17,11 +24,52 @@ export default class Comp extends Component {
   /**
    * This function is just an example of how to increment state property.
    */
-  incCounter = x => {
-    // this is bound from inside the constructor
+  incCounterHandler = x => {
     this.setState({
       counter: this.state.counter + x
     })
+  }
+
+  toggleCounterHandler = () => {
+    this.setState({
+      showCounter: !this.state.showCounter
+    })
+  }
+
+  removeCompHandler = index => {
+    // This way we are creating a reference to this.state.components
+    // const components = this.state.components
+
+    // IMMUTABILITY is important!
+    // With the slice() function components becomes a copy of
+    // this.state.components instead of a reference.
+    // const components = this.state.components.slice()
+
+    // (ES6) Same as slice the spread operator will return an array of components
+    const components = [...this.state.components]
+
+    components.splice(index, 1)
+    this.setState({components})
+  }
+
+  changeCompNameHandler = (event, id) => {
+    const compIndex = this.state.components.findIndex(comp => {
+      return comp.id === id
+    })
+
+    // Creating a copy of the component we want to change
+    // const component = Object.assign({}, this.state.components[compIndex])
+
+    // (ES6) Same as Object.assign but with spread operator
+    const component = {...this.state.components[compIndex]}
+    component.name = event.target.value
+
+    // Next copy the state components
+    const components = [...this.state.components]
+    // And update the component
+    components[compIndex] = component
+
+    this.setState({components})
   }
 
   render () {
@@ -37,17 +85,40 @@ export default class Comp extends Component {
     //   })
     // }, 10000)
 
+    let counter = null
+
+    if (this.state.showCounter) {
+      counter = (
+        <div>
+          <p>Increase the counter: {this.state.counter}</p>
+          {/* Increase the counter by 5 on every click, in order to pass the
+            argument we have to use bind(this, argument, ...) this context is
+            always passed as first argument to the bind method */}
+          <button onClick={this.incCounterHandler.bind(this, 5)}>+</button>
+        </div>
+      )
+    }
+
+    let components = (
+      <div>
+        {this.state.components.map((comp, index) => {
+          return <Comp4
+            key={comp.id}
+            name={comp.name}
+            click={this.removeCompHandler.bind(this, index)}
+            change={(event) => this.changeCompNameHandler(event, comp.id)} />
+        })}
+      </div>
+    )
+
     // props and state are being watched by react and after every change, react
     // rerenders the component (part of the component)
     const propsName = 'Props'
     return (
       <div>
         <h1>Hello, {this.state.stateProp}!</h1>
-        <p>Increase the counter: {this.state.counter}</p>
-        {/* Increase the counter by 5 on every click, in order to pass the
-          argument we have to use bind(this, argument, ...) this context is
-          always passed as first argument to the bind method */}
-        <button onClick={this.incCounter.bind(this, 5)}>+</button>
+        <button onClick={this.toggleCounterHandler}>{this.state.showCounter ? 'Hide' : 'Show'} counter</button>
+        {counter}
         <Comp1 changeProp={this.changeProp} pname={propsName}
           stateProp={this.state.stateProp}>
           Comp is passing this text to Comp1 and its available as this.props.children
@@ -57,6 +128,8 @@ export default class Comp extends Component {
           children will be accessed by using props.children */}
           Comp is passing this text to Comp3 and its available as props.children
         </Comp3>
+        {/* Show multiple components of type Comp4, generated with the map function */}
+        {components}
         {/* With activeClassName we can keep the navigation updated. */}
         <NavLink to='/comp2' activeClassName='a-class' >go to Comp2 component</NavLink>
       </div>

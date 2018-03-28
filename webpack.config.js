@@ -207,7 +207,7 @@ module.exports = env => {
             loader: 'babel-loader',
             options: {
               presets: ['react', 'env'],
-              plugins: ['transform-class-properties']
+              plugins: ['transform-class-properties', 'transform-object-rest-spread']
             }
           }
         },
