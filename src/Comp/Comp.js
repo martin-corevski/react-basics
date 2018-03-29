@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import './Comp.scss'
+// with classes we have access to locally scoped classes from Comp.scss file
+import classes from './Comp.scss'
 import Comp1 from '../Comp1/Comp1'
 import Comp3 from '../Comp3/Comp3'
 import Comp4 from '../Comp4/Comp4'
@@ -86,17 +87,33 @@ export default class Comp extends Component {
     // }, 10000)
 
     let counter = null
+    const btnCounterStyle = {
+      backgroundColor: 'green',
+      color: 'white',
+      cursor: 'pointer'
+    }
 
     if (this.state.showCounter) {
+      // Example of how to manage (add) multiple classes to one element
+      let counterClasses = []
+      if (this.state.counter <= 10) {
+        counterClasses.push(classes.textError)
+      }
+      if (this.state.counter >= 0 && this.state.counter <= 5) {
+        counterClasses.push(classes.textBold)
+      }
+
       counter = (
         <div>
-          <p>Increase the counter: {this.state.counter}</p>
+          <p className={counterClasses.join(' ')}>Increase the counter: {this.state.counter}</p>
           {/* Increase the counter by 5 on every click, in order to pass the
             argument we have to use bind(this, argument, ...) this context is
             always passed as first argument to the bind method */}
           <button onClick={this.incCounterHandler.bind(this, 5)}>+</button>
         </div>
       )
+
+      btnCounterStyle.backgroundColor = 'red'
     }
 
     let components = (
@@ -117,8 +134,6 @@ export default class Comp extends Component {
     return (
       <div>
         <h1>Hello, {this.state.stateProp}!</h1>
-        <button onClick={this.toggleCounterHandler}>{this.state.showCounter ? 'Hide' : 'Show'} counter</button>
-        {counter}
         <Comp1 changeProp={this.changeProp} pname={propsName}
           stateProp={this.state.stateProp}>
           Comp is passing this text to Comp1 and its available as this.props.children
@@ -128,6 +143,10 @@ export default class Comp extends Component {
           children will be accessed by using props.children */}
           Comp is passing this text to Comp3 and its available as props.children
         </Comp3>
+        <button onClick={this.toggleCounterHandler} style={btnCounterStyle}>
+          {this.state.showCounter ? 'Hide' : 'Show'} counter
+        </button>
+        {counter}
         {/* Show multiple components of type Comp4, generated with the map function */}
         {components}
         {/* With activeClassName we can keep the navigation updated. */}

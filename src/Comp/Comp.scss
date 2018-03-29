@@ -1,3 +1,15 @@
 h1 {
   color: green;
 }
+
+:global .text-success {
+  color: green;
+}
+
+.textError {
+  color: red;
+}
+
+.textBold {
+  font-weight: bold;
+}

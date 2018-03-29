@@ -1,0 +1,8 @@
+.textWarning {
+  color: yellow;
+  background-color: black;
+  @media only screen and (min-width: 1024px) {
+    color: orange;
+    background-color: white;
+  }
+}
