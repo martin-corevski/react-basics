@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class Comp1 extends Component {
-  handleChange = e => {
+  stateChangeHandler = e => {
     this.props.changeProp(e.target.value)
   }
 
@@ -11,10 +11,10 @@ export default class Comp1 extends Component {
     return (
       <div>
         <p>{this.props.pname} to you for using props!</p>
-        {/* Every time we change the input value the handleChange method will
+        {/* Every time we change the input value the stateChangeHandler method will
           be triggered and consequently the state will be updated, i.e. stateProp
           will have new value */}
-        <input value={this.props.stateProp} onChange={this.handleChange} />
+        <input value={this.props.stateProp} onChange={this.stateChangeHandler} />
         <h4>The this.props.children in Comp1 contains: {this.props.children}</h4>
       </div>
     )
