@@ -5,6 +5,9 @@ import classes from './Comp.scss'
 import Comp1 from '../Comp1/Comp1'
 import Comp3 from '../Comp3/Comp3'
 import Comp4 from '../Comp4/Comp4'
+// If you want to see error handling in action uncomment the next two lines
+// import ErrorComp from '../ErrorComp/ErrorComp'
+// import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 export default class Comp extends Component {
   state = {
@@ -150,6 +153,12 @@ export default class Comp extends Component {
         {/* Show multiple components of type Comp4, generated with the map function */}
         {components}
         {/* With activeClassName we can keep the navigation updated. */}
+        <h1>Displaying components that might throw an error:</h1>
+        {/* If you want to see error handling in action uncomment this part
+        <ErrorBoundary>
+          <ErrorComp />
+        </ErrorBoundary>
+        */}
         <NavLink to='/comp2' activeClassName='a-class' >go to Comp2 component</NavLink>
       </div>
     )
