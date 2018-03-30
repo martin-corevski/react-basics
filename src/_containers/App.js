@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-// with classes we have access to locally scoped classes from Comp.scss file
+
 import Comp1 from '../Comp1/Comp1'
 import Comp3 from '../Comp3/Comp3'
 import MultipleComps4 from '../MultipleComps4/MultipleComps4'
@@ -9,7 +9,15 @@ import Counter from '../_components/Counter'
 // import ErrorComp from '../ErrorComp/ErrorComp'
 // import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
-export default class Comp extends Component {
+// with classes we have access to locally scoped classes from App.scss file
+// import classes from './App.scss'
+
+/**
+ * This is an example of Stateful component (container)
+ * @extends Component
+ * @type {Object}
+ */
+class App extends Component {
   state = {
     stateProp: 'React',
     showCounter: true,
@@ -21,8 +29,8 @@ export default class Comp extends Component {
     ]
   }
 
-  changeProp = stateProp => {
-    this.setState({stateProp}) // this is the same as {stateProp: stateProp}
+  changeStatePropHandler = event => {
+    this.setState({stateProp: event.target.value})
   }
 
   /**
@@ -91,7 +99,7 @@ export default class Comp extends Component {
     return (
       <div>
         <h1>Hello, {this.state.stateProp}!</h1>
-        <Comp1 changeProp={this.changeProp} pname={propsName}
+        <Comp1 change={event => this.changeStatePropHandler(event)} pname={propsName}
           stateProp={this.state.stateProp}>
           Comp is passing this text to Comp1 and its available as this.props.children
         </Comp1>
@@ -119,3 +127,5 @@ export default class Comp extends Component {
     )
   }
 }
+
+export default App

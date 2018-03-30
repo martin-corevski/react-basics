@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
+/**
+ * This is an example of Stateless (NOT functional) component,
+ * similar to Stateful but without state management
+ * @extends Component
+ * @type {Object}
+ */
 class Comp2 extends Component {
   navigate = () => {
     console.log('Comp2 navigate() log history: ', this.props.history)
@@ -40,6 +46,7 @@ class Comp2 extends Component {
     )
   }
 }
-// The component have to be exported withRouter in order for the push and replace
+
+// The component has to be exported withRouter in order for the push and replace
 // functions to work. https://stackoverflow.com/a/42716055
 export default withRouter(Comp2)
