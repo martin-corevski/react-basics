@@ -1,10 +1,11 @@
+@import '../_assets/colors';
+
 .textWarning {
-  color: yellow;
-  background-color: black;
+  background-color: $color-black;
+  color: $color-yellow;
   cursor: pointer;
-  
   @media only screen and (min-width: 1024px) {
-    color: orange;
-    background-color: white;
+    background-color: $color-white;
+    color: $color-orange;
   }
 }

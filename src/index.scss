@@ -1,12 +1,14 @@
+@import './_assets/colors';
+
 h1 {
-  color: green;
+  color: $color-green;
 }
 
 :global .text-success {
-  color: green;
+  color: $color-green;
 }
 
 :global .borders-all {
-  border: 1px solid black;
-  box-shadow: 0 2px 3px grey;
+  border: 1px solid $color-black;
+  box-shadow: 0 2px 3px $color-grey;
 }

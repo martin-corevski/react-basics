@@ -8,6 +8,24 @@ import { withRouter } from 'react-router-dom'
  * @type {Object}
  */
 class Comp2 extends Component {
+  constructor (props) {
+    super(props)
+    console.log('[Comp2.js] constructor says hi!')
+  }
+
+  componentWillMount () {
+    console.log('[Comp2.js] componentWillMount says hi!')
+  }
+
+  componentWillUnmount () {
+    // Component is about to get removed => Perform any cleanup work here!
+    console.log('[Comp2.js] componentWillUnmount says hi!')
+  }
+
+  componentDidMount () {
+    console.log('[Comp2.js] componentDidMount says hi!')
+  }
+
   navigate = () => {
     console.log('Comp2 navigate() log history: ', this.props.history)
     /**
@@ -23,6 +41,8 @@ class Comp2 extends Component {
   }
 
   render () {
+    console.log('[Comp2.js] render says hi!')
+
     const { match: { params } } = this.props
     const { location: { search } } = this.props
     const queryString = require('query-string')

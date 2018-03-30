@@ -1,5 +1,7 @@
+@import '../_assets/colors';
+
 .textError {
-  color: red;
+  color: $color-red;
 }
 
 .textBold {

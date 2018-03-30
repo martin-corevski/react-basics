@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import React, { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import Comp1 from '../Comp1/Comp1'
@@ -18,6 +19,16 @@ import Counter from '../_components/Counter'
  * @type {Object}
  */
 class App extends Component {
+// By extending React's PureComponent we get overridden shouldComponentUpdate()
+// method out of the box and we don't need to check the state and props for
+// changes
+// class App extends PureComponent {
+  constructor (props) {
+    super(props)
+    console.log('[App.js] constructor says hi!')
+    // state can be initialized here as this.state = { ... }
+  }
+
   state = {
     stateProp: 'React',
     showCounter: true,
@@ -28,6 +39,54 @@ class App extends Component {
       {id: 'uid3', name: 'component 3'}
     ]
   }
+
+  // ///////////////////////////////
+  //  LIFECYCLE HOOKS (METHODS)  //
+  // ///////////////////////////////
+
+  // COMPONENT MOUNT
+
+  componentWillMount () {
+    console.log('[App.js] componentWillMount says hi!')
+  }
+
+  componentWillUnmount () {
+    // Component is about to get removed => Perform any cleanup work here!
+    console.log('[App.js] componentWillUnmount says hi!')
+  }
+
+  componentDidMount () {
+    console.log('[App.js] componentDidMount says hi!')
+  }
+
+  // COMPONENT UPDATE
+
+  componentWillReceiveProps (nextProps) {
+    console.log('[App.js] componentWillReceiveProps says hi!', nextProps)
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate says hi!', nextProps, nextState)
+    // Instead of checking every single state property and all props we can make
+    // this component pure by extending React's PureComponent
+    return nextProps !== this.props ||
+    nextState.stateProp !== this.state.stateProp ||
+    nextState.showCounter !== this.state.showCounter ||
+    nextState.counter !== this.state.counter ||
+    nextState.components !== this.state.components
+  }
+
+  componentWillUpdate () {
+    console.log('[App.js] componentWillUpdate says hi!')
+  }
+
+  componentDidUpdate () {
+    console.log('[App.js] componentDidUpdate says hi!')
+  }
+
+  // ////////////
+  //  HANDLERS //
+  // ////////////
 
   changeStatePropHandler = event => {
     this.setState({stateProp: event.target.value})
@@ -85,6 +144,8 @@ class App extends Component {
   }
 
   render () {
+    console.log('[App.js] render says hi!')
+
     let components = (
       <div>
         <MultipleComps4 components={this.state.components}
@@ -115,13 +176,13 @@ class App extends Component {
           incCounter={this.incCounterHandler.bind(this, 5)} />
         {/* Show multiple components of type Comp4, generated with the map function */}
         {components}
-        {/* With activeClassName we can keep the navigation updated. */}
         {/* If you want to see error handling in action uncomment this part
         <h1>Displaying components that might throw an error:</h1>
         <ErrorBoundary>
           <ErrorComp />
         </ErrorBoundary>
         */}
+        {/* With activeClassName we can keep the navigation updated. */}
         <NavLink to='/comp2' activeClassName='a-class' >go to Comp2 component</NavLink>
       </div>
     )
