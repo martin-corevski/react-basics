@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 /**
  * This is an example of Stateless (NOT functional) component,
- * similar to Stateful but without state management
+ * similar to Stateful but without state to manage
  * @extends Component
  * @type {Object}
  */

@@ -1,6 +1,12 @@
 # React basics
 
 React 16 basic setup with react router, Webpack 4 and additional standard linter installed with babel-eslint parser.
+- **Comp1** as an example of component with 'ref' and PropTypes usage examples.
+- **Comp2** as an example of component with route parameters.
+- **Comp3** as an example of component making use of higher order components.
+- **MultipleComps4** and **Comp4** are an example of creating a list of components.
+- **ErrorBoundary** and **ErrorComp** present a way of error generation and handling.
+- The **Counter** component explains the usage of conditional rendering.
 
 ---
 ## Packages installed
