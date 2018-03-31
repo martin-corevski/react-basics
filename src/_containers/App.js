@@ -96,15 +96,24 @@ class App extends Component {
    * This function is just an example of how to increment state property.
    */
   incCounterHandler = x => {
-    this.setState({
-      counter: this.state.counter + x
-    })
+    // This is not the right way to update state counter property
+    // this.setState({
+    //   counter: this.state.counter + x
+    // })
+    // Use this approach instead, state update is async which means some other
+    // setState may update the counter in the meantime
+    this.setState(
+      (prevState, props) => {
+        return { counter: prevState.counter + x }
+      }
+    )
   }
 
   toggleCounterHandler = () => {
-    this.setState({
-      showCounter: !this.state.showCounter
-    })
+    // IMMUTABILITY is important! Copy the state property first, then change its
+    // value and update the state
+    const showCounter = this.state.showCounter
+    this.setState({showCounter: !showCounter})
   }
 
   removeCompHandler = index => {
