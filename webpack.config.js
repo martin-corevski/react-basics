@@ -157,7 +157,7 @@ module.exports = env => {
        * more on https://webpack.js.org/configuration/output/#output-filename
        * @type {String}
        */
-      filename: 'js/scripts.min.js'
+      filename: 'js/[hash].bundle.js'
     },
     /**
      * This option determines how the different types of modules in the project
@@ -214,7 +214,11 @@ module.exports = env => {
             loader: 'babel-loader',
             options: {
               presets: ['react', 'env'],
-              plugins: ['transform-class-properties', 'transform-object-rest-spread']
+              plugins: [
+                'transform-class-properties',
+                'transform-object-rest-spread',
+                'syntax-dynamic-import'
+              ]
             }
           }
         },
