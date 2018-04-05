@@ -61,6 +61,10 @@ npm run watch
 
 - [react]
 
+## Udemy course
+
+- **[Maximilian Schwarzmüller](https://www.udemy.com/react-the-complete-guide-incl-redux/)**
+
 ## YouTube
 
 - [LearnCode.academy]
