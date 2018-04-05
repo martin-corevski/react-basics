@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './Comp3.scss'
-import hocFunc from '../_hoc/hocFunc'
-import Aux from '../_hoc/HigherOrderComp'
+import hocFunc from '../../hoc/hocFunc'
+import Aux from '../../hoc/HigherOrderComp'
 
 /**
  * This is an example of Stateless (functional) component. Since this is

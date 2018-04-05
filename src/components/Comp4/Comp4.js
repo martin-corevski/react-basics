@@ -1,7 +1,7 @@
 import React from 'react'
 // Import css in order to have access to locally scoped classes
 import classes from './Comp4.scss'
-import HigherOrderComp from '../_hoc/HigherOrderComp'
+import HigherOrderComp from '../../hoc/HigherOrderComp'
 
 /**
  * This is an example of Stateless (functional) component. Since this is
