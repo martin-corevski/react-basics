@@ -113,7 +113,14 @@ module.exports = env => {
        * reload because of the inline option.
        * @type {Boolean}
        */
-      hot: true
+      hot: true,
+      /**
+       * In order to be able to use react-router-dom with BrowserRouter this
+       * option has to be set to true, reference:
+       * https://tylermcginnis.com/react-router-cannot-get-url-refresh/
+       * @type {Boolean}
+       */
+      historyApiFallback: true
     },
     /**
      * Entry source, where magic needs to happen Q.Q
