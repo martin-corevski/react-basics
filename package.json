@@ -3,19 +3,18 @@
   "version": "1.0.0",
   "description": "React basics, starter configuration",
   "main": "index.js",
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
+  "browserslist": ["> 1%", "last 2 versions"],
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start":
+      "webpack-dev-server --config ./webpack.config.js --mode development",
     "test": "jest",
     "build": "webpack --env.NODE_ENV=development --mode development",
     "build:prod": "webpack --env.NODE_ENV=production --mode production",
     "watch": "webpack --env.NODE_ENV=development --watch --mode development"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "globals": ["shallow", "render", "mount", "describe", "it", "expect"]
   },
   "author": "MCorevski",
   "license": "MIT",
